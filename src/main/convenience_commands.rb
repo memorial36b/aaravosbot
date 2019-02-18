@@ -109,7 +109,7 @@ module Bot::ConvenienceCommands
     when 'user', 'public'
       Discordrb::Member.bot_owner_permission = :user
       event << '**Set your command permission level to `User`.**'
-    else event.channel.send_temp('Invalid argument.', 5)
+    else event.send_temp('Invalid argument.', 5)
     end
   end
 
