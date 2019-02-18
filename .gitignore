@@ -1,0 +1,11 @@
+# Ignores RubyMine workspace files
+.idea/
+
+# Ignores the SQL database
+data/data.db
+
+# Ignores the crystals in the src/dev folder, as they are just for my personal use
+src/dev/*.rb
+
+# Ignores the lockfile
+Gemfile.lock
