@@ -14,6 +14,8 @@ module Bot::Moderation
   SCHEDULER = Rufus::Scheduler.new
   # Muted channel ID
   MUTED_CHANNEL_ID = 541809796911726602
+  # #mod_log ID
+  MOD_LOG_ID = 545113155831988235
 
   # Commands module from discordrb
   module Discordrb::Commands
@@ -155,6 +157,20 @@ module Bot::Moderation
     # Breaks command and sends cancellation message to event channel if user canceled warning
     break '**Canceled warning.**' if reason == :cancel
 
+    # Sends log embed to #mod_log
+    Bot::BOT.channel(MOD_LOG_ID).send_embed do |embed|
+      embed.author = {
+          name: "WARNING | User: #{user.display_name} (#{user.distinct})",
+          icon_url: user.avatar_url
+      }
+      embed.description = "⚠ **#{user.mention} was issued a warning by #{event.user.mention}.**\n" +
+                          "**Reason:** #{reason}\n" +
+                          "\n" +
+                          "**Issued by:** #{event.user.mention} (#{event.user.distinct})"
+      embed.timestamp = Time.now
+      embed.color = 0xFFD700
+    end
+
     # DMs warning message to user
     user.dm "**You've recieved a warning from one of the staff members.**\n" +
             "**Reason:** #{reason}"
@@ -262,6 +278,19 @@ module Bot::Moderation
       # Deletes user entry from job hash and database
       mute_jobs.delete(user.id)
       MUTED.where(id: user.id).delete
+    end
+
+    # Sends log embed to #mod_log
+    Bot::BOT.channel(MOD_LOG_ID).send_embed do |embed|
+      embed.author = {
+          name: "MUTE | User: #{user.display_name} (#{user.distinct})",
+          icon_url: user.avatar_url
+      }
+      embed.description = "🔇 **#{user.mention} was muted for #{time_string(mute_length)}.**#{reason_text}\n" +
+                          "\n" +
+                          "**Muted by:** #{event.user.mention} (#{event.user.distinct})"
+      embed.timestamp = Time.now
+      embed.color = 0xFFD700
     end
 
     # Responds with notification message to muted channel
