@@ -1,6 +1,6 @@
 require 'sequel'
 require 'rufus-scheduler'
-ENV['TZ'] = GMT
+ENV['TZ'] = 'GMT'
 
 # Module containing constants that multiple crystals need access to
 module Constants
