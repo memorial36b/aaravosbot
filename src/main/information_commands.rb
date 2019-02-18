@@ -226,6 +226,15 @@ module Bot::InformationCommands
   module HelpInfo
     extend HelpCommand
 
+    # +info
+    command_info(
+        name: :info,
+        blurb: 'Gets info on AaravosBot.',
+        permission: :user,
+        info: ["Returns info about AaravosBot, such as the language he is coded in, the libraries he uses and a link to his source code."],
+        group: :information,
+    )
+
     # +userinfo
     command_info(
         name: :userinfo,
