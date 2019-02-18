@@ -272,7 +272,7 @@ end
 # Member class from discordrb
 class Discordrb::Member
   # My permission level for command usage; for testing purposes ONLY!
-  @bot_owner_permission = :user
+  @bot_owner_permission = :moderator
 
   # Metaclass: only used to define class accessor for bot_owner_permission variable
   # @!attribute [rw] bot_owner_permission
