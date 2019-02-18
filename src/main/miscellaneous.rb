@@ -13,7 +13,7 @@ module Bot::Miscellaneous
   VOICE_TEXT_CHATS = {
     466538319585476611 => 492864853401141259, # Music
     507552578511568907 => 507553012663975956, # General
-    546892277075935252 => 546892450086649857  # General 2
+    546892277075935252 => 546892450086649857  # Gaming
   }
 
   # Detects when a user has joined, moved or left a voice channel, and updates
