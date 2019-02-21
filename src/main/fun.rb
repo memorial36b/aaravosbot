@@ -100,7 +100,7 @@ module Bot::Fun
 
     # If the rate limit has been hit, respond to user and break
     if (time = HUG_TART_BUCKET.rate_limited?(event.user.id))
-      event.channel.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
+      event.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
       break
     end
 
@@ -145,7 +145,7 @@ module Bot::Fun
 
     # If the rate limit has been hit, respond to user and break
     if (time = HUG_TART_BUCKET.rate_limited?(event.user.id))
-      event.channel.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
+      event.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
       break
     end
 

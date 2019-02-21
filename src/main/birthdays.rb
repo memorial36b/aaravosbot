@@ -103,7 +103,7 @@ module Bot::Birthdays
 
     # If user is checking the next birthday:
     elsif args[0].downcase == 'next'
-      upcoming_birthdays = BIRTHDAYS.map([:id, :birthday]).each do |id, birthday|
+      upcoming_birthdays = BIRTHDAYS.map([:id, :birthday]).map do |id, birthday|
         if Time.utc(*[Time.now.year] + vali_date(birthday)) > Time.now
           [id, Time.utc(*[Time.now.year] + vali_date(birthday))]
         else
@@ -120,7 +120,7 @@ module Bot::Birthdays
             name: 'Birthdays: Next',
             icon_url: 'https://cdn.discordapp.com/attachments/330586271116165120/427435169826471936/glossaryck_icon.png'
         }
-        embed.description = "**On #{Time.utc(*[2000] + vali_date(next_date)).strftime('%B %-d')}:**\n" +
+        embed.description = "**On #{next_date.strftime('%B %-d')}:**\n" +
                              next_users.reduce('') do |memo, id| # combines IDs into parsed string of usernames
                                next memo unless (user = SERVER.member(id))
                                memo + "\n**• #{user.display_name} (#{user.distinct})**"
