@@ -13,7 +13,8 @@ module Bot::Miscellaneous
   VOICE_TEXT_CHATS = {
     466538319585476611 => 492864853401141259, # Music
     507552578511568907 => 507553012663975956, # General
-    546892277075935252 => 546892450086649857  # Gaming
+    546892277075935252 => 546892450086649857, # Gaming
+    547124486160252995 => 547124486160252995  # Radio Show
   }
 
   # Detects when a user has joined, moved or left a voice channel, and updates
@@ -27,14 +28,15 @@ module Bot::Miscellaneous
     # Deletes user's overwrites in each of the voice text channels
     VOICE_TEXT_CHATS.values.each { |id| Bot::BOT.channel(id).delete_overwrite(event.user.id) }
 
-    # If user has joined a voice channel, defines overwrite for its respective text channel and responds to user
-    if event.channel
+    # If user has joined a voice channel that has a corresponding text channel, defines
+    # overwrite for its text channel and responds to user
+    if event.channel && VOICE_TEXT_CHATS[event.channel.id]
       text_channel = Bot::BOT.channel(VOICE_TEXT_CHATS[event.channel.id])
       text_channel.define_overwrite(event.user, 1024, 0)
       text_channel.send_temporary_message(
           "**#{event.user.mention}, welcome to #{text_channel.mention}.**\n" +
           "This is the text chat for the voice channel you're connected to.",
-          10
+          10 # seconds to delete
       )
     end
   end
@@ -55,7 +57,7 @@ module Bot::Miscellaneous
     # Responds to user
     event.channel.send_temp(
         "Searched **#{arg.to_i}** messages and cleaned up **#{messages.size}** music commands and responses.",
-        5
+        5 # seconds to delete
     )
   end
 end
