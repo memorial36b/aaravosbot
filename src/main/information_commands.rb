@@ -19,6 +19,7 @@ module Bot::InformationCommands
                           "He was initially written for the functionality of <#506866876417048586>, but has since evolved into much more.\n" +
                           "He is coded using the [Ruby](https://www.ruby-lang.org/en/) language, using the [discordrb](https://github.com/meew0/discordrb) library and the [Cluster](https://github.com/410757864530-dead-salmonids/cluster) bot framework.\n" +
                           "He is not hosted on any VPS or other hosting service, just my (<@220509153985167360>'s) home PC.\n" +
+                          "His icon was made lovingly by <@139198446799290369>."
                           "\n" +
                           "Source code can be found [here](https://github.com/410757864530-dead-salmonids/aaravosbot)"
       embed.footer = {text: '"How may I serve you?" • Created on October 30, 2018'}
