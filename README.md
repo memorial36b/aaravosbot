@@ -1,6 +1,6 @@
 # AaravosBot: "How may I serve you?"
 
-AaravosBot is the custom server bot for the [Dragon Prince Discord server](https://discord.gg/Sg8xR7V). 
+AaravosBot is the custom server bot for the [Dragon Prince Discord server](https://discord.gg/thedragonprince). 
 It is written using the [discordrb](https://github.com/meew0/discordrb) library and 
 my [Cluster](https://github.com/410757864530-dead-salmonids/cluster) bot framework.
 
