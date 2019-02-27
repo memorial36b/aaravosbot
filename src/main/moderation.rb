@@ -201,7 +201,7 @@ module Bot::Moderation
         break if mute_response
         msgs.push(await_event.message)
         break await_event.message.content if parse_time(await_event.message.content) >= 10
-        event.send_temporary_message(
+        event.send_temp(
             "That's not a valid length of time.",
             5 # seconds to delete
         )
@@ -356,8 +356,9 @@ module Bot::Moderation
 
     # If no messages with the given parameters were found to purge, responds to command accordingly
     if (count = messages_to_delete.size) == 0
-      if text event.channel.send_temp('No messages containing that text were found to purge.', 5)
-      else event.channel.send_temp('No messages from that user were found to purge.', 5)
+      if text
+        event.send_temp('No messages containing that text were found to purge.', 5)
+      else event.send_temp('No messages from that user were found to purge.', 5)
       end
 
     # Otherwise, deletes the selected messages and responds to command

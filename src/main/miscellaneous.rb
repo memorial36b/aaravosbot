@@ -55,7 +55,7 @@ module Bot::Miscellaneous
     end
 
     # Responds to user
-    event.channel.send_temp(
+    event.send_temp(
         "Searched **#{arg.to_i}** messages and cleaned up **#{messages.size}** music commands and responses.",
         5 # seconds to delete
     )
