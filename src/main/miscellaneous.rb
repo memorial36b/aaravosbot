@@ -42,7 +42,7 @@ module Bot::Miscellaneous
   end
 
   # Clean command for #music channel; not indexed in +help because it is technically part of music module
-  command(:clean, channels: %w(#music)) do |event, arg = '40'|
+  command(:clean, channels: %w(#dragon-dj)) do |event, arg = '40'|
     # Breaks unless the given number of messages is within 2 and 100
     break unless (2..100).include?(arg.to_i)
 

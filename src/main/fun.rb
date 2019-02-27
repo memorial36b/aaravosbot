@@ -85,7 +85,7 @@ module Bot::Fun
   command :genderator do |event|
     # If the rate limit has been hit, respond to user and break
     if (time = GENDERATOR_BUCKET.rate_limited?(event.user.id))
-      event.channel.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
+      event.send_temp("Please wait **#{pl(time.round, 'second')}**.", 3)
       break
     end
 
