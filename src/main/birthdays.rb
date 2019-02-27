@@ -104,13 +104,13 @@ module Bot::Birthdays
     # If user is checking the next birthday:
     elsif args[0].downcase == 'next'
       upcoming_birthdays = BIRTHDAYS.map([:id, :birthday]).map do |id, birthday|
-        if Time.utc(*[Time.now.year] + vali_date(birthday)) > Time.now
+        if Time.utc(*[Time.now.year] + vali_date(birthday)) > Time.now.getgm
           [id, Time.utc(*[Time.now.year] + vali_date(birthday))]
         else
           [id, Time.utc(*[Time.now.year + 1] + vali_date(birthday))]
         end
       end
-      upcoming_birthdays.sort_by! { |_id, t| t }.reverse!
+      upcoming_birthdays.sort_by! { |_id, t| t }
       next_date = upcoming_birthdays[0][1]
       next_users = upcoming_birthdays.select { |_id, t| t == next_date }.map { |id, _t| id }
 
