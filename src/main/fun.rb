@@ -192,7 +192,41 @@ module Bot::Fun
     "*#{BAN_SCENARIOS.sample.gsub('{user}', user.mention)}*"
   end
 
-  # Help command info for every command in this crystal
+  command :say do |event, arg|
+    # Breaks unless user is moderator
+    break unless event.user.has_permission?(:moderator)
+
+    # If a valid channel argument was given, sends the given message content to that channel unless no message was given
+    if (channel = Bot::BOT.channel(arg.scan(/\d/).join))
+      channel.send(event.message.content[(arg.length + 6)..-1]) unless event.message.content[(arg.length + 6)..-1].empty?
+
+    # Otherwise, delete the event message and respond with the given message content in this channel
+    else
+      unless event.message.content[5..-1].empty?
+        event.message.delete
+        event << event.message.content[5..-1]
+      end
+    end
+  end
+
+  command :s do |event, arg|
+    # Breaks unless user is moderator
+    break unless event.user.has_permission?(:moderator)
+
+    # If a valid channel argument was given, sends the given message content to that channel unless no message was given
+    if (channel = Bot::BOT.channel(arg.scan(/\d/).join))
+      channel.send(event.message.content[(arg.length + 4)..-1]) unless event.message.content[(arg.length + 4)..-1].empty?
+
+    # Otherwise, delete the event message and respond with the given message content in this channel
+    else
+      unless event.message.content[3..-1].empty?
+        event.message.delete
+        event << event.message.content[3..-1]
+      end
+    end
+  end
+
+  # Help command info for commands in this crystal
   module HelpInfo
     extend HelpCommand
 
