@@ -5,7 +5,6 @@
 module Bot::Ping
   # These two lines can be removed as needed (i.e. if your crystal does not contain any commands or event handlers)
   extend Discordrb::Commands::CommandContainer
-  extend Discordrb::EventContainer
 
   # Ping command
   command :ping do |event|
@@ -17,7 +16,7 @@ module Bot::Ping
 
   # Help command info
   module HelpInfo
-    extends HelpCommand
+    extend HelpCommand
 
     # +ping
     command_info(
