@@ -21,7 +21,7 @@ module Bot::InformationCommands
                           "He is hosted on a [Scaleway](https://www.scaleway.com/) START1-S cloud server.\n" +
                           "His icon was made lovingly by <@139198446799290369>.\n" +
                           "Source code can be found [here](https://github.com/410757864530-dead-salmonids/aaravosbot)\n" +
-                          "\n"
+                          "\n" +
                           "**Note from the Developer:** I need money to pay for the server AaravosBot runs on -- computing power isn't free!\n" +
                           "If you enjoy this server or AaravosBot's functions, **please consider donating to my [ko-fi](https://ko-fi.com/hecksalmonids).** Thank you!"
       embed.footer = {text: '"How may I serve you?" • Created on October 30, 2018'}
