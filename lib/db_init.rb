@@ -52,4 +52,19 @@ module DatabaseInit
     Integer :channel_id # Message's channel ID
     Integer :id         # Message ID
   end
+
+  # Staff chat session info dataset
+  DB.create_table? :chat_info do
+    Integer :user_id    # ID of user contacting staff
+    Integer :channel_id # ID of the staff contact channel
+    Integer :start_time # Time that the chat began, as a Unix timestamp
+
+  end
+
+  # Staff chat session's message log dataset
+  DB.create_table? :chat_message_log do
+    Integer :user_id   # ID of the user whose contact session a message is from
+    String  :message   # A formatted string of the sent message, with the author's full username at the front
+    Integer :timestamp # Time that the message was sent, as a Unix timestamp
+  end
 end
