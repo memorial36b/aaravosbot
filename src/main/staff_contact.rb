@@ -74,7 +74,7 @@ module Bot::StaffContact
           channel.send("**#{event.user.distinct}** | #{event.message.content}")
           CHAT_MESSAGE_LOG << {
               user_id:   entry[:user_id],
-              message:   "#{event.user.distinct} - #{event.message.content}"
+              message:   "#{event.user.distinct} - #{event.message.content}",
               timestamp: Time.now.to_i
           }
 
