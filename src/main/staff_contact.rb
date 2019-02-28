@@ -125,7 +125,7 @@ module Bot::StaffContact
         CHAT_INFO.where(user_id: event.user.id).update(channel_id: channel.id)
 
         # Sends message pinging online staff that a user would like to speak with them
-        channel.send("@ here **User #{event.user.distinct} would like to speak with the staff.**")
+        channel.send("@here **User #{event.user.distinct} would like to speak with the staff.**")
 
         # Adds event handler for messages sent in the new channel and stores it in hash, so it can
         # be removed later
