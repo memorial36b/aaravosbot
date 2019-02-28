@@ -147,7 +147,7 @@ module Bot::Birthdays
     SERVER.role(BIRTHDAY_ID).members.each { |m| m.remove_role(BIRTHDAY_ID) }
 
     # Iterates through all users who have a birthday today:
-    BIRTHDAY_MESSAGES.all.select { |id, d| [Time.now.month, Time.now.day] == vali_date(d) }.each do |id, d|
+    BIRTHDAY_MESSAGES.all.select { |id, d| [Time.now.getgm.month, Time.now.getgm.day] == vali_date(d) }.each do |id, d|
       # Skips unless user is present within server
       next unless (user = SERVER.member(id))
 
