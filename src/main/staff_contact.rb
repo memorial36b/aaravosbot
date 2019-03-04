@@ -25,6 +25,9 @@ module Bot::StaffContact
     CHAT_INFO.all do |entry|
       user = Bot::BOT.user(entry[:user_id])
 
+      # Skips if an entry already exists in the event handler hash (i.e. an event handler already exists)
+      next if event_handlers[entry[:user_id]]
+
       # Defines event handler for channel in the given entry and stores it in hash to be removed later
       event_handlers[entry[:user_id]] = Bot::BOT.message in: entry[:channel_id] do |event|
         # Skips if the bot is the one sending the message or the message is the +end command
