@@ -321,6 +321,26 @@ module Bot::Moderation
     # Responds to command
     event << "**Unmuted #{user.distinct}.**"
   end
+
+  # Logs any bans to the log channel
+  user_ban do |event|
+    # Gets the most recent audit log entry concerning bans, which should be the ban that just occurred
+    audit_log_entry = SERVER.audit_logs(action: :member_ban_add).latest
+
+    # Sends an embed to the log channel detailing the ban
+    Bot::BOT.channel(MOD_LOG_ID).send_embed do |embed|
+      embed.author = {
+          name: "BAN | User: #{event.user.distinct}",
+          icon_url: event.user.avatar_url
+      }
+      embed.description = "🔨 **#{event.user.mention} was banned.**\n" +
+          "**Reason:** #{audit_log_entry.reason || 'None given.'}\n" +
+          "\n" +
+          "**Issued by:** #{audit_log_entry.user.mention} (#{audit_log_entry.user.distinct})"
+      embed.timestamp = Time.now
+      embed.color = 0xFFD700
+    end
+  end
   
   # Purge command
   command :purge do |event, *args|
@@ -376,7 +396,6 @@ module Bot::Moderation
       event.send_temp(message_text, 5)
     end
   end
-
 
   # Automatically mutes users if raid mode is active, and activates raid mode if bucket is triggered
   member_join do |event|
