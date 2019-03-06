@@ -80,6 +80,8 @@ module Bot::Fun
       limit:     1,
       time_span: 3
   )
+  # Jade's ID
+  JADE_ID = 139198446799290369
 
   # Genderator
   command :genderator do |event|
@@ -193,8 +195,9 @@ module Bot::Fun
   end
 
   command :say do |event, arg|
-    # Breaks unless user is moderator
-    break unless event.user.has_permission?(:moderator)
+    # Breaks unless user is moderator or Jade
+    break unless event.user.has_permission?(:moderator) ||
+                 event.user.id == JADE_ID
 
     # If a valid channel argument was given, sends the given message content to that channel unless no message was given
     if (channel = Bot::BOT.channel(arg.scan(/\d/).join))
@@ -210,8 +213,9 @@ module Bot::Fun
   end
 
   command :s do |event, arg|
-    # Breaks unless user is moderator
-    break unless event.user.has_permission?(:moderator)
+    # Breaks unless user is moderator or Jade
+    break unless event.user.has_permission?(:moderator) ||
+                 event.user.id == JADE_ID
 
     # If a valid channel argument was given, sends the given message content to that channel unless no message was given
     if (channel = Bot::BOT.channel(arg.scan(/\d/).join))
